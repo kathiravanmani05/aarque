@@ -20,6 +20,8 @@ class AarquePipeline:
                     images = [img.replace('odoo-1fbbc.kxcdn.com/web/image/product.product/', '').split('/')[0] for img in item['images']]
                 else:
                     images = []
+                if 'long_description' in item and isinstance(item['long_description'], dict):
+                    item['long_description'] = json.dumps(item['long_description'])
 
                 # Find existing record by SKU
                 record = session.query(Product).filter_by(sku=item['sku']).first()
