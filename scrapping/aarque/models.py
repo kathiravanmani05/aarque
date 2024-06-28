@@ -45,8 +45,8 @@ class Product(Base):
 
 
 # Define your database connection
-# engine = create_engine('mariadb+mariadbconnector://calas:T2iEYtVA6QdaQIEe@localhost/calas')
-engine = create_engine('mysql://root:root@localhost/aarque')
+engine = create_engine('mariadb+mariadbconnector://sdk:TKnApQsKErGlXv6H@localhost/sdk_aarque')
+#engine = create_engine('mysql://root:root@localhost/aarque')
 
 # Create the tables
 Base.metadata.create_all(engine)
