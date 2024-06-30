@@ -24,7 +24,6 @@ def category_view(request, category,page=1):
 
 
 def product_detail(request, category,sku):
-    print(sku)
     product = fetch_product_detail(sku)
     return render(request, 'product_detail.html',{'product':product,})
 
