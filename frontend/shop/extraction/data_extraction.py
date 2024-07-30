@@ -34,5 +34,11 @@ def search_product(search_variable):
     if not search_variable:
         return None
     product = Product.objects.filter(sku=search_variable).values().first()
-    
+    if product and product.get('images'):
+        images = product['images']
+        try:
+            image_ids = json.loads(images)
+            product['images'] = image_ids  # Keep images as they are
+        except json.JSONDecodeError:
+            product['images'] = []
     return product
