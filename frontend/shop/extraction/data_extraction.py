@@ -34,4 +34,9 @@ def search_product(search_variable):
     if not search_variable:
         return None
     product = Product.objects.filter(sku=search_variable).values().first()
+    if product:
+        # Assuming images are stored as a JSON string in the database
+        images = product.images  # This should be a JSON string like '["51774"]'
+        images_list = json.loads(images) if images else []  # Convert JSON string to Python list
+        product.images = images_list  # Replace JSON string with Python list of image IDs or URLs
     return product
