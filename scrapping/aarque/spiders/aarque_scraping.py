@@ -66,7 +66,8 @@ class AarqueScrapingSpider(scrapy.Spider):
         images =[]
         image = response.xpath('//*[@itemprop="image"]/@src').extract_first().replace('//','')
         short = response.xpath('//*[@class="product_attachments"]//text()').extract()
-        short_description = [item.strip() for item in short if item.strip()]
+        short_descriptions = [item.strip() for item in short if item.strip()]
+        short_description = '\n'.join(short_descriptions)
         images.append(image)
         self.save_image(images)
         
