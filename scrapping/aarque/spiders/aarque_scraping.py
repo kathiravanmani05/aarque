@@ -65,6 +65,8 @@ class AarqueScrapingSpider(scrapy.Spider):
         details = data_dict
         images =[]
         image = response.xpath('//*[@itemprop="image"]/@src').extract_first().replace('//','')
+        short = response.xpath('//*[@class="product_attachments"]//text()').extract()
+        short_description = [item.strip() for item in short if item.strip()]
         images.append(image)
         self.save_image(images)
         
@@ -89,7 +91,7 @@ class AarqueScrapingSpider(scrapy.Spider):
             'stock_comentarie_3': None,
             'images': images,
             'route_product': None,
-            'short_description': None,
+            'short_description': short_description,
             'long_description': details,
             'pdf': None,
             'length': None,
